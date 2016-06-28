@@ -1,0 +1,20 @@
+{
+    "name": "uma/tight-fist",
+    "description": "A bookkeeping and budgeting application",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": ">=7.0.0",
+        "ramsey/uuid": "^3.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "UMA\\TightFist\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "UMA\\Tests\\TightFist\\": "tests"
+        }
+    }
+}

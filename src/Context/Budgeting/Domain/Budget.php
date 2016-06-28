@@ -1,0 +1,101 @@
+<?php
+
+namespace UMA\TightFist\Context\Budgeting\Domain;
+
+class Budget
+{
+    /**
+     * @var GreenMoneyPool
+     */
+    private $idlePool;
+
+    /**
+     * @var MoneyPool[]
+     */
+    private $items;
+
+    public function __construct()
+    {
+        $this->idlePool = new GreenMoneyPool();
+        $this->items = [];
+    }
+
+    public function addItem(string $item): Budget
+    {
+        if (isset($this->items[$item])) {
+            throw new \RuntimeException('fuck you, you cannot override an existing item');
+        }
+
+        $this->items[$item] = new MoneyPool();
+
+        return $this;
+    }
+
+    public function discardItem(string $item): Budget
+    {
+        if (!isset($this->items[$item])) {
+            throw new \RuntimeException('fuck you, you cannot discard a nonexistent item');
+        }
+
+        $this->idlePool = $this->idlePool->credit($this->items[$item]->getBalance());
+        unset($this->items[$item]);
+
+        return $this;
+    }
+
+    public function getIdleBalance(): int
+    {
+        return $this->idlePool->getBalance();
+    }
+
+    public function getItemBalance(string $item): int
+    {
+        if (!isset($this->items[$item])) {
+            throw new \RuntimeException('fuck you, you cannot inspect the balance of an item that does not exist');
+        }
+
+        return $this->items[$item]->getBalance();
+    }
+
+    public function earn(int $amount): Budget
+    {
+        $this->idlePool = $this->idlePool->credit($amount);
+
+        return $this;
+    }
+
+    public function spend(string $item, int $amount): Budget
+    {
+        if (!isset($this->items[$item])) {
+            throw new \RuntimeException('fuck you, you cannot spend money from an item that does not exist');
+        }
+
+        $this->items[$item] = $this->items[$item]->debit($amount);
+
+        return $this;
+    }
+
+    public function allocate(string $item, int $amount): Budget
+    {
+        if (!isset($this->items[$item])) {
+            throw new \RuntimeException('fuck you, you cannot assign funds to an item that does not exist');
+        }
+
+        $this->idlePool = $this->idlePool->debit($amount);
+        $this->items[$item] = $this->items[$item]->credit($amount);
+
+        return $this;
+    }
+
+    public function reallocate(string $src, string $dst, int $amount): Budget
+    {
+        if (!isset($this->items[$src]) || !isset($this->items[$dst])) {
+            throw new \RuntimeException('fuck you, you cannot relocate funds to and/or from items that do not exist');
+        }
+
+        $this->items[$src] = $this->items[$src]->debit($amount);
+        $this->items[$dst] = $this->items[$dst]->credit($amount);
+
+        return $this;
+    }
+}

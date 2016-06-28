@@ -1,0 +1,9 @@
+version: '2'
+services:
+  php:
+    image: 1maa/php-dev:7.0
+    ports:
+      - "4444:22"
+    volumes:
+      - .:/root/TightFist
+    working_dir: /root/TightFist
