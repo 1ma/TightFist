@@ -1,6 +1,6 @@
 <?php
 
-namespace UMA\TightFist\Context\Budgeting\Domain;
+namespace UMA\TightFist\Context\Budgeting\Domain\Model;
 
 /**
  * The GreenMoneyPool is special MoneyPool that cannot
@@ -8,13 +8,13 @@ namespace UMA\TightFist\Context\Budgeting\Domain;
  */
 class GreenMoneyPool extends MoneyPool
 {
-    public function __construct(int $startingBalance = 0)
+    public function __construct(Budget $budget, int $startingBalance = 0)
     {
         if (0 > $startingBalance) {
             throw new \InvalidArgumentException('fuck you, you cannot create a GreenMoneyPool instance with a negative starting balance');
         }
 
-        parent::__construct($startingBalance);
+        parent::__construct($budget, $startingBalance);
     }
 
     /**
@@ -22,7 +22,7 @@ class GreenMoneyPool extends MoneyPool
      */
     public function credit(int $amount): MoneyPool
     {
-        return new self((parent::credit($amount)->getBalance()));
+        return new self($this->getBudget(), parent::credit($amount)->getBalance());
     }
 
     /**
@@ -36,7 +36,7 @@ class GreenMoneyPool extends MoneyPool
             throw new \RuntimeException('fuck you, you cannot debit more funds than what the balance holds');
         }
 
-        return new self((parent::debit($amount)->getBalance()));
+        return new self($this->getBudget(), parent::debit($amount)->getBalance());
     }
 
     /**

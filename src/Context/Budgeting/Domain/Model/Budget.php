@@ -1,9 +1,17 @@
 <?php
 
-namespace UMA\TightFist\Context\Budgeting\Domain;
+namespace UMA\TightFist\Context\Budgeting\Domain\Model;
+
+use UMA\TightFist\SharedKernel\Domain\UUID;
+use UMA\TightFist\SharedKernel\EventDispatcher\EventDispatcher;
 
 class Budget
 {
+    /**
+     * @var UUID
+     */
+    private $id;
+
     /**
      * @var GreenMoneyPool
      */
@@ -14,10 +22,21 @@ class Budget
      */
     private $items;
 
-    public function __construct()
+    /**
+     * @var EventDispatcher
+     */
+    private $dispatcher;
+
+    public function __construct(EventDispatcher $dispatcher)
     {
-        $this->idlePool = new GreenMoneyPool();
+        $this->id = new UUID();
+        $this->idlePool = new GreenMoneyPool($this);
         $this->items = [];
+
+        $this->dispatcher = $dispatcher;
+
+        $this->dispatcher
+            ->dispatch(new BudgetCreated($this->id));
     }
 
     public function addItem(string $item): Budget
@@ -26,7 +45,7 @@ class Budget
             throw new \RuntimeException('fuck you, you cannot override an existing item');
         }
 
-        $this->items[$item] = new MoneyPool();
+        $this->items[$item] = new MoneyPool($this);
 
         return $this;
     }
@@ -38,6 +57,7 @@ class Budget
         }
 
         $this->idlePool = $this->idlePool->credit($this->items[$item]->getBalance());
+
         unset($this->items[$item]);
 
         return $this;
@@ -98,4 +118,18 @@ class Budget
 
         return $this;
     }
+
+    public function deallocate(string $item, int $amount): Budget
+    {
+        if (!isset($this->items[$item])) {
+            throw new \RuntimeException('fuck you, you cannot deallocate funds from a non existent item');
+        }
+
+        $this->items[$item]->debit($amount);
+        $this->idlePool->credit($amount);
+
+        return $this;
+    }
+
+
 }

@@ -2,10 +2,22 @@
 
 namespace UMA\Tests\TightFist\Context\Budgeting\Domain;
 
-use UMA\TightFist\Context\Budgeting\Domain\GreenMoneyPool;
+use UMA\TightFist\Context\Budgeting\Domain\Model\Budget;
+use UMA\TightFist\Context\Budgeting\Domain\Model\GreenMoneyPool;
+use UMA\TightFist\SharedKernel\EventDispatcher\LocalEventDispatcher;
 
 class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Budget
+     */
+    private $budget;
+
+    protected function setUp()
+    {
+        $this->budget = new Budget(new LocalEventDispatcher());
+    }
+
     /**
      * @test
      */
@@ -13,7 +25,7 @@ class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\RuntimeException::class);
 
-        $pool = new GreenMoneyPool();
+        $pool = new GreenMoneyPool($this->budget);
         $pool->debit(100);
     }
 
@@ -24,7 +36,7 @@ class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new GreenMoneyPool(-100);
+        new GreenMoneyPool($this->budget, -100);
     }
 
     /**
@@ -32,7 +44,7 @@ class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
      */
     public function isNotPlainMoneyPool()
     {
-        $pool = new GreenMoneyPool(100);
+        $pool = new GreenMoneyPool($this->budget, 100);
 
         $creditedPool = $pool->credit(25);
         $this->assertSame(125, $creditedPool->getBalance());

@@ -2,7 +2,10 @@
 
 namespace UMA\Tests\TightFist\Context\Budgeting\Domain;
 
-use UMA\TightFist\Context\Budgeting\Domain\Budget;
+use UMA\Tests\TightFist\Stubs\SpySubscriber;
+use UMA\TightFist\Context\Budgeting\Domain\Model\Budget;
+use UMA\TightFist\Context\Budgeting\Domain\Model\BudgetCreated;
+use UMA\TightFist\SharedKernel\EventDispatcher\LocalEventDispatcher;
 
 class BudgetTest extends \PHPUnit_Framework_TestCase
 {
@@ -11,14 +14,16 @@ class BudgetTest extends \PHPUnit_Framework_TestCase
      */
     public function testBrainstormingScenario()
     {
-        $budget = new Budget();
+        $dispatcher = (new LocalEventDispatcher())
+            ->addSubscriber($spy = new SpySubscriber());
+
+        $budget = new Budget($dispatcher);
         $this->assertSame(0, $budget->getIdleBalance());
 
         $budget->earn(11023);
         $this->assertSame(11023, $budget->getIdleBalance());
 
-        $budget->addItem('food');
-        $budget->allocate('food', 10000);
+        $budget->addItem('food')->allocate('food', 10000);
         $this->assertSame(1023, $budget->getIdleBalance());
         $this->assertSame(10000, $budget->getItemBalance('food'));
 
@@ -29,14 +34,7 @@ class BudgetTest extends \PHPUnit_Framework_TestCase
         $budget->discardItem('food');
         $this->assertSame(8523, $budget->getIdleBalance());
 
-        // Same flow as above but leveraging the fluent interface
-        $equivalentBudget = (new Budget())
-            ->earn(11023)
-            ->addItem('food')
-            ->allocate('food', 10000)
-            ->spend('food', 2500)
-            ->discardItem('food');
-
-        $this->assertSame($budget->getIdleBalance(), $equivalentBudget->getIdleBalance());
+        $this->assertCount(1, $events = $spy->getObservedEvents());
+        $this->assertInstanceOf(BudgetCreated::class, $events[0]);
     }
 }

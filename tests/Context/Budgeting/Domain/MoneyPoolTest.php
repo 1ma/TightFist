@@ -2,20 +2,20 @@
 
 namespace UMA\Tests\TightFist\Context\Budgeting\Domain;
 
-use UMA\TightFist\Context\Budgeting\Domain\MoneyPool;
+use UMA\TightFist\Context\Budgeting\Domain\Model\Budget;
+use UMA\TightFist\Context\Budgeting\Domain\Model\MoneyPool;
+use UMA\TightFist\SharedKernel\EventDispatcher\LocalEventDispatcher;
 
 class MoneyPoolTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @test
+     * @var Budget
      */
-    public function immutability()
-    {
-        $pool = new MoneyPool();
-        $anotherPool = $pool->credit(100)->debit(100);
+    private $budget;
 
-        $this->assertEquals($pool, $anotherPool);
-        $this->assertNotSame($pool, $anotherPool);
+    protected function setUp()
+    {
+        $this->budget = new Budget(new LocalEventDispatcher());
     }
 
     /**
@@ -25,7 +25,7 @@ class MoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $pool = new MoneyPool();
+        $pool = new MoneyPool($this->budget);
         $pool->credit(-100);
     }
 
@@ -36,29 +36,7 @@ class MoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $pool = new MoneyPool();
+        $pool = new MoneyPool($this->budget);
         $pool->debit(-100);
-    }
-
-    /**
-     * @test
-     */
-    public function testZeroCreditAmount()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $pool = new MoneyPool();
-        $pool->credit(0);
-    }
-
-    /**
-     * @test
-     */
-    public function testZeroDebitAmount()
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        $pool = new MoneyPool();
-        $pool->debit(0);
     }
 }
