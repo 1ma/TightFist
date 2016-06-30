@@ -2,6 +2,7 @@
 
 namespace UMA\TightFist\Context\Bookkeeping\Domain\Model\Account;
 
+use UMA\TightFist\Context\Bookkeeping\Domain\Model\Budget\BudgetId;
 use UMA\TightFist\Context\Bookkeeping\Domain\Model\Transaction\Transaction;
 use UMA\TightFist\SharedKernel\Domain\UUID;
 use UMA\TightFist\SharedKernel\EventDispatcher\EventDispatcher;

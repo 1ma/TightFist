@@ -25,7 +25,7 @@ class BudgetCreated implements Event
 
     public function __toString()
     {
-        return json_encode((string) $this->budgetId);
+        return (string) $this->budgetId;
     }
 
     public function occurredAt(): \DateTime
