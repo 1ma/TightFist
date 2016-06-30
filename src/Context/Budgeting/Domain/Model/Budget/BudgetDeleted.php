@@ -1,11 +1,11 @@
 <?php
 
-namespace UMA\TightFist\Context\Budgeting\Domain\Model;
+namespace UMA\TightFist\Context\Budgeting\Domain\Model\Budget;
 
 use UMA\TightFist\SharedKernel\Domain\UUID;
 use UMA\TightFist\SharedKernel\EventDispatcher\Event;
 
-class BudgetCreated implements Event
+class BudgetDeleted implements Event
 {
     /**
      * @var UUID

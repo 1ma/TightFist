@@ -23,7 +23,7 @@ class UUID implements ValueObject
 
     public function equals(ValueObject $object): bool
     {
-        return $object instanceof UUID
+        return $object instanceof self
             && (string) $object === (string) $this;
     }
 }

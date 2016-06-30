@@ -1,6 +1,8 @@
 <?php
 
-namespace UMA\TightFist\Context\Budgeting\Domain\Model;
+namespace UMA\TightFist\Context\Budgeting\Domain\Model\MoneyPool;
+
+use UMA\TightFist\Context\Budgeting\Domain\Model\Budget\Budget;
 
 /**
  * The GreenMoneyPool is special MoneyPool that cannot

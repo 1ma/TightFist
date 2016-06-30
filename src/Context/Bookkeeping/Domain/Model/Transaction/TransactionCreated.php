@@ -22,8 +22,8 @@ class TransactionCreated implements Event
     private $occurredAt;
 
     /**
-     * @param string    $id
-     * @param int       $amount
+     * @param string $id
+     * @param int    $amount
      */
     public function __construct(string $id, int $amount)
     {

@@ -3,8 +3,8 @@
 namespace UMA\Tests\TightFist\Context\Budgeting\Domain;
 
 use UMA\Tests\TightFist\Stubs\SpySubscriber;
-use UMA\TightFist\Context\Budgeting\Domain\Model\Budget;
-use UMA\TightFist\Context\Budgeting\Domain\Model\BudgetCreated;
+use UMA\TightFist\Context\Budgeting\Domain\Model\Budget\Budget;
+use UMA\TightFist\Context\Budgeting\Domain\Model\Budget\BudgetCreated;
 use UMA\TightFist\SharedKernel\EventDispatcher\LocalEventDispatcher;
 
 class BudgetTest extends \PHPUnit_Framework_TestCase

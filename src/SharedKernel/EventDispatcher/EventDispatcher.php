@@ -4,7 +4,6 @@ namespace UMA\TightFist\SharedKernel\EventDispatcher;
 
 interface EventDispatcher
 {
-
     /**
      * @param EventSubscriber $subscriber
      */

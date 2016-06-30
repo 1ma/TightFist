@@ -1,7 +1,9 @@
 <?php
 
-namespace UMA\TightFist\Context\Budgeting\Domain\Model;
+namespace UMA\TightFist\Context\Budgeting\Domain\Model\Budget;
 
+use UMA\TightFist\Context\Budgeting\Domain\Model\MoneyPool\GreenMoneyPool;
+use UMA\TightFist\Context\Budgeting\Domain\Model\MoneyPool\MoneyPool;
 use UMA\TightFist\SharedKernel\Domain\UUID;
 use UMA\TightFist\SharedKernel\EventDispatcher\EventDispatcher;
 
@@ -130,6 +132,4 @@ class Budget
 
         return $this;
     }
-
-
 }

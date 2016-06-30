@@ -2,8 +2,8 @@
 
 namespace UMA\Tests\TightFist\Context\Budgeting\Domain;
 
-use UMA\TightFist\Context\Budgeting\Domain\Model\Budget;
-use UMA\TightFist\Context\Budgeting\Domain\Model\MoneyPool;
+use UMA\TightFist\Context\Budgeting\Domain\Model\Budget\Budget;
+use UMA\TightFist\Context\Budgeting\Domain\Model\MoneyPool\MoneyPool;
 use UMA\TightFist\SharedKernel\EventDispatcher\LocalEventDispatcher;
 
 class MoneyPoolTest extends \PHPUnit_Framework_TestCase

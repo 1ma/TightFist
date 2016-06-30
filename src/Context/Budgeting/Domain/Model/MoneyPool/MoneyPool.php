@@ -1,12 +1,12 @@
 <?php
 
-namespace UMA\TightFist\Context\Budgeting\Domain\Model;
+namespace UMA\TightFist\Context\Budgeting\Domain\Model\MoneyPool;
 
+use UMA\TightFist\Context\Budgeting\Domain\Model\Budget\Budget;
 use UMA\TightFist\SharedKernel\Domain\UUID;
-use UMA\TightFist\SharedKernel\Domain\ValueObject;
 
 /**
- * The MoneyPool is an immutable value object
+ * The MoneyPool is an immutable value object.
  */
 class MoneyPool
 {
@@ -34,14 +34,6 @@ class MoneyPool
         $this->id = new UUID();
         $this->budget = $budget;
         $this->balance = $startingBalance;
-    }
-
-    /**
-     * @return UUID
-     */
-    public function getId(): UUID
-    {
-        return $this->id;
     }
 
     /**
@@ -98,17 +90,5 @@ class MoneyPool
         if (0 > $amount) {
             throw new \InvalidArgumentException('fuck you, a negative amount? Gimme a break');
         }
-    }
-
-    /**
-     * @param ValueObject $object
-     *
-     * @return bool
-     */
-    public function equals(ValueObject $object): bool
-    {
-        return $object instanceof MoneyPool
-            && get_class($object) === get_class($this)
-            && $object->getBalance() === $this->getBalance();
     }
 }
