@@ -26,10 +26,4 @@ class UUID implements ValueObject
     {
         return $this->uuid;
     }
-
-    public function equals(ValueObject $object): bool
-    {
-        return $object instanceof self
-            && (string) $object === (string) $this;
-    }
 }

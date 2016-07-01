@@ -2,11 +2,10 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model\Bookkeeping;
+namespace UMA\TightFist\Domain\Bookkeeping;
 
 use UMA\DDD\Foundation\UUID;
 use UMA\DDD\EventDispatcher\Event;
-use UMA\DDD\Foundation\ValueObject;
 
 class AccountCreated implements Event
 {
@@ -34,10 +33,5 @@ class AccountCreated implements Event
     public function occurredAt(): \DateTimeImmutable
     {
         return $this->occurredAt;
-    }
-
-    public function equals(ValueObject $object): bool
-    {
-        return false;
     }
 }

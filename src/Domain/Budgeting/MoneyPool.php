@@ -1,13 +1,14 @@
 <?php
 
-namespace UMA\TightFist\Domain\Model\Budgeting;
+namespace UMA\TightFist\Domain\Budgeting;
 
+use UMA\DDD\Foundation\Entity;
 use UMA\DDD\Foundation\UUID;
 
 /**
  * The MoneyPool is an immutable value object.
  */
-class MoneyPool
+class MoneyPool implements Entity
 {
     /**
      * @var UUID
@@ -33,6 +34,11 @@ class MoneyPool
         $this->id = new UUID();
         $this->budget = $budget;
         $this->balance = $startingBalance;
+    }
+
+    public function getId(): UUID
+    {
+        return $this->id;
     }
 
     /**

@@ -2,15 +2,18 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model\Budgeting;
+namespace UMA\TightFist\Domain\Budgeting;
 
 use UMA\DDD\Foundation\UUID;
 
 interface BudgetRepository
 {
-    public function exists(UUID $id): bool;
-
-    public function save(Budget $budget);
+    /**
+     * @param UUID $id
+     *
+     * @return Budget|null
+     */
+    public function find(UUID $id);
 
     /**
      * @param UUID $id
@@ -20,4 +23,6 @@ interface BudgetRepository
      * @throws \RuntimeException
      */
     public function get(UUID $id): Budget;
+
+    public function save(Budget $budget);
 }

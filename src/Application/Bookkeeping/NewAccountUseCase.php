@@ -2,12 +2,12 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Application;
+namespace UMA\TightFist\Application\Budgeting;
 
-use UMA\TightFist\Domain\Model\Bookkeeping\Account;
-use UMA\TightFist\Domain\Model\Bookkeeping\AccountCreated;
-use UMA\TightFist\Domain\Model\Bookkeeping\AccountRepository;
-use UMA\TightFist\Domain\Model\Budgeting\BudgetRepository;
+use UMA\TightFist\Domain\Bookkeeping\Account;
+use UMA\TightFist\Domain\Bookkeeping\AccountCreated;
+use UMA\TightFist\Domain\Bookkeeping\AccountRepository;
+use UMA\TightFist\Domain\Budgeting\BudgetRepository;
 use UMA\DDD\Foundation\UUID;
 use UMA\DDD\EventDispatcher\EventDispatcher;
 
@@ -35,15 +35,13 @@ class NewAccountUseCase
         $this->budgetRepository = $budgetRepository;
     }
 
-    public function execute(UUID $budgetId = null)
+    public function execute(UUID $budgetId = null): UUID
     {
         $account = new Account();
 
         if (null !== $budgetId) {
-            try {
-                $budget = $this->budgetRepository->get($budgetId);
-            } catch (\RuntimeException $e) {
-                return; // TODO
+            if (null === $budget = $this->budgetRepository->find($budgetId))  {
+                return; //TODO
             }
 
             $account->joinBudget($budget);
@@ -52,6 +50,8 @@ class NewAccountUseCase
         $this->accountRepository->save($account);
 
         $this->dispatcher
-            ->dispatch(new AccountCreated($account->getId()));
+            ->dispatch(new AccountCreated($accountId = $account->getId()));
+
+        return $accountId;
     }
 }

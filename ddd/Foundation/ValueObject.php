@@ -6,5 +6,4 @@ namespace UMA\DDD\Foundation;
 
 interface ValueObject
 {
-    public function equals(ValueObject $object): bool;
 }

@@ -2,13 +2,18 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model\Bookkeeping;
+namespace UMA\TightFist\Domain\Bookkeeping;
 
 use UMA\DDD\Foundation\UUID;
 
 interface AccountRepository
 {
-    public function save(Account $account);
+    /**
+     * @param UUID $id
+     *
+     * @return Account|null
+     */
+    public function find(UUID $id);
 
     /**
      * @param UUID $id
@@ -18,4 +23,6 @@ interface AccountRepository
      * @throws \RuntimeException
      */
     public function get(UUID $id): Account;
+
+    public function save(Account $account);
 }

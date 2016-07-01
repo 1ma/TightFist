@@ -4,8 +4,8 @@ declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Stubs;
 
-use UMA\TightFist\Domain\Model\Budgeting\Budget;
-use UMA\TightFist\Domain\Model\Budgeting\BudgetRepository;
+use UMA\TightFist\Domain\Budgeting\Budget;
+use UMA\TightFist\Domain\Budgeting\BudgetRepository;
 use UMA\DDD\Foundation\UUID;
 
 class ArrayBudgetRepository implements BudgetRepository
@@ -15,30 +15,29 @@ class ArrayBudgetRepository implements BudgetRepository
      */
     private $entities = [];
 
-    public function exists(UUID $id): bool
+    /**
+     * {@inheritdoc}
+     */
+    public function find(UUID $id)
     {
-        return isset($this->entities[(string) $id]);
+        return $this->entities[(string) $id] ?? null;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function get(UUID $id): Budget
+    {
+        if (!isset($this->entities[(string) $id])) {
+            throw new \RuntimeException();
+        }
+
+        return $this->entities[(string) $id];
     }
 
     public function save(Budget $budget)
     {
         $this->entities[(string) $budget->getId()] = $budget;
-    }
-
-    /**
-     * @param UUID $id
-     *
-     * @return Budget
-     *
-     * @throws \RuntimeException
-     */
-    public function get(UUID $id): Budget
-    {
-        if (isset($this->entities[(string) $id])) {
-            throw new \RuntimeException();
-        }
-
-        return $this->entities[(string) $id];
     }
 
     /**

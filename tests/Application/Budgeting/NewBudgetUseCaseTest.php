@@ -2,13 +2,13 @@
 
 declare (strict_types = 1);
 
-namespace UMA\Tests\TightFist\Application;
+namespace UMA\Tests\TightFist\Application\Budgeting;
 
 use UMA\Tests\TightFist\Stubs\ArrayBudgetRepository;
 use UMA\Tests\TightFist\Stubs\SpySubscriber;
-use UMA\TightFist\Application\NewBudgetUseCase;
+use UMA\TightFist\Application\Budgeting\NewBudgetUseCase;
 use UMA\DDD\EventDispatcher\GenericEventDispatcher;
-use UMA\TightFist\Domain\Model\Budgeting\BudgetCreated;
+use UMA\TightFist\Domain\Budgeting\BudgetCreated;
 
 class NewBudgetUseCaseTest extends \PHPUnit_Framework_TestCase
 {

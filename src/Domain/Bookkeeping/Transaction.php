@@ -2,11 +2,12 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model\Bookkeeping;
+namespace UMA\TightFist\Domain\Bookkeeping;
 
+use UMA\DDD\Foundation\Entity;
 use UMA\DDD\Foundation\UUID;
 
-class Transaction
+class Transaction implements Entity
 {
     /**
      * @var string

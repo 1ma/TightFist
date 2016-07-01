@@ -2,42 +2,36 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model\Budgeting;
+namespace UMA\TightFist\Domain\Bookkeeping;
 
 use UMA\DDD\Foundation\UUID;
 use UMA\DDD\EventDispatcher\Event;
-use UMA\DDD\Foundation\ValueObject;
 
-class BudgetCreated implements Event
+class TransactionCreated implements Event
 {
     /**
-     * @var UUID
+     * @var string
      */
-    private $budgetId;
+    private $txId;
 
     /**
      * @var \DateTimeImmutable
      */
     private $occurredAt;
 
-    public function __construct(UUID $budgetId)
+    public function __construct(UUID $txId)
     {
-        $this->budgetId = $budgetId;
+        $this->txId = $txId;
         $this->occurredAt = new \DateTimeImmutable('now');
     }
 
     public function __toString()
     {
-        return (string) $this->budgetId;
+        return json_encode('');
     }
 
     public function occurredAt(): \DateTimeImmutable
     {
         return $this->occurredAt;
-    }
-
-    public function equals(ValueObject $object): bool
-    {
-        return false;
     }
 }

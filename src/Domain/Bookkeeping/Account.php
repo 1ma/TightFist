@@ -2,12 +2,13 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model\Bookkeeping;
+namespace UMA\TightFist\Domain\Bookkeeping;
 
-use UMA\TightFist\Domain\Model\Budgeting\Budget;
+use UMA\DDD\Foundation\AggregateRoot;
+use UMA\TightFist\Domain\Budgeting\Budget;
 use UMA\DDD\Foundation\UUID;
 
-class Account
+class Account implements AggregateRoot
 {
     /**
      * @var UUID

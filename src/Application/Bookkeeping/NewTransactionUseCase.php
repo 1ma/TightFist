@@ -2,10 +2,10 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Application;
+namespace UMA\TightFist\Application\Budgeting;
 
-use UMA\TightFist\Domain\Model\Bookkeeping\AccountRepository;
-use UMA\TightFist\Domain\Model\Bookkeeping\TransactionCreated;
+use UMA\TightFist\Domain\Bookkeeping\AccountRepository;
+use UMA\TightFist\Domain\Bookkeeping\TransactionCreated;
 use UMA\DDD\Foundation\UUID;
 use UMA\DDD\EventDispatcher\EventDispatcher;
 

@@ -2,10 +2,10 @@
 
 declare (strict_types = 1);
 
-namespace UMA\Tests\TightFist\Domain\Model\Budgeting;
+namespace UMA\Tests\TightFist\Domain\Budgeting;
 
-use UMA\TightFist\Domain\Model\Budgeting\Budget;
-use UMA\TightFist\Domain\Model\Budgeting\MoneyPool;
+use UMA\TightFist\Domain\Budgeting\Budget;
+use UMA\TightFist\Domain\Budgeting\MoneyPool;
 use UMA\DDD\EventDispatcher\GenericEventDispatcher;
 
 class MoneyPoolTest extends \PHPUnit_Framework_TestCase

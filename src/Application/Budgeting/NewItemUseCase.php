@@ -2,9 +2,9 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Application;
+namespace UMA\TightFist\Application\Budgeting;
 
-use UMA\TightFist\Domain\Model\Budgeting\BudgetRepository;
+use UMA\TightFist\Domain\Budgeting\BudgetRepository;
 use UMA\DDD\Foundation\UUID;
 use UMA\DDD\EventDispatcher\EventDispatcher;
 

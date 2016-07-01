@@ -2,9 +2,9 @@
 
 declare (strict_types = 1);
 
-namespace UMA\Tests\TightFist\Domain\Model\Budgeting;
+namespace UMA\Tests\TightFist\Domain\Budgeting;
 
-use UMA\TightFist\Domain\Model\Budgeting\Budget;
+use UMA\TightFist\Domain\Budgeting\Budget;
 
 class BudgetTest extends \PHPUnit_Framework_TestCase
 {
