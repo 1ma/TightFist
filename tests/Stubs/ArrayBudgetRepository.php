@@ -46,6 +46,6 @@ class ArrayBudgetRepository implements BudgetRepository
      */
     public function getAll()
     {
-        return $this->entities;
+        return array_values($this->entities);
     }
 }

@@ -7,7 +7,8 @@ namespace UMA\Tests\TightFist\Application;
 use UMA\Tests\TightFist\Stubs\ArrayBudgetRepository;
 use UMA\Tests\TightFist\Stubs\SpySubscriber;
 use UMA\TightFist\Application\NewBudgetUseCase;
-use UMA\DDD\EventDispatcher\LocalEventDispatcher;
+use UMA\DDD\EventDispatcher\GenericEventDispatcher;
+use UMA\TightFist\Domain\Model\Budgeting\BudgetCreated;
 
 class NewBudgetUseCaseTest extends \PHPUnit_Framework_TestCase
 {
@@ -28,8 +29,8 @@ class NewBudgetUseCaseTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $eventDispatcher = new LocalEventDispatcher();
-        $eventDispatcher->addSubscriber($this->spy = new SpySubscriber());
+        $eventDispatcher = (new GenericEventDispatcher())
+            ->addSubscriber($this->spy = new SpySubscriber());
 
         $this->useCase = new NewBudgetUseCase($eventDispatcher, $this->repository = new ArrayBudgetRepository());
     }
@@ -37,10 +38,14 @@ class NewBudgetUseCaseTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function kek()
+    public function happyPath()
     {
-        $this->useCase->execute();
+        $newBudgetId = $this->useCase->execute();
 
-        $this->assertCount(1, $this->repository->getAll());
+        $this->assertCount(1, $budgets = $this->repository->getAll());
+        $this->assertEquals($newBudgetId, $budgets[0]->getId());
+
+        $this->assertCount(1, $events = $this->spy->getObservedEvents());
+        $this->assertInstanceOf(BudgetCreated::class, $events[0]);
     }
 }

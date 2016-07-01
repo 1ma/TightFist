@@ -4,7 +4,7 @@ declare (strict_types = 1);
 
 namespace UMA\DDD\EventDispatcher;
 
-class LocalEventDispatcher implements EventDispatcher
+class GenericEventDispatcher implements EventDispatcher
 {
     /**
      * @var EventSubscriber[]

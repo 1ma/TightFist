@@ -6,7 +6,7 @@ namespace UMA\Tests\TightFist\Domain\Model\Budgeting;
 
 use UMA\TightFist\Domain\Model\Budgeting\Budget;
 use UMA\TightFist\Domain\Model\Budgeting\MoneyPool;
-use UMA\DDD\EventDispatcher\LocalEventDispatcher;
+use UMA\DDD\EventDispatcher\GenericEventDispatcher;
 
 class MoneyPoolTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,7 +17,7 @@ class MoneyPoolTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->budget = new Budget(new LocalEventDispatcher());
+        $this->budget = new Budget(new GenericEventDispatcher());
     }
 
     /**
