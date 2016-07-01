@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace UMA\TightFist\SharedKernel\Domain;
 
 use Ramsey\Uuid\Uuid as Generator;

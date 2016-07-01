@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace UMA\Tests\TightFist\Stubs;
 
 use UMA\TightFist\SharedKernel\EventDispatcher\Event;
