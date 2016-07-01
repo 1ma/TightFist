@@ -1,10 +1,11 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace UMA\TightFist\Domain\Model\Bookkeeping;
 
 use UMA\TightFist\Domain\Model\Budgeting\Budget;
-use UMA\TightFist\SharedKernel\Domain\UUID;
-use UMA\TightFist\SharedKernel\EventDispatcher\EventDispatcher;
+use UMA\DDD\Foundation\UUID;
 
 class Account
 {

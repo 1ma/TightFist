@@ -1,8 +1,8 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
-namespace UMA\TightFist\SharedKernel\EventDispatcher;
+namespace UMA\DDD\EventDispatcher;
 
 class LocalEventDispatcher implements EventDispatcher
 {
@@ -12,7 +12,7 @@ class LocalEventDispatcher implements EventDispatcher
     private $subscribers = [];
 
     /**
-     * @param EventSubscriber $subscriber
+     * {@inheritdoc}
      */
     public function addSubscriber(EventSubscriber $subscriber): EventDispatcher
     {
@@ -22,7 +22,7 @@ class LocalEventDispatcher implements EventDispatcher
     }
 
     /**
-     * @param Event $event
+     * {@inheritdoc}
      */
     public function dispatch(Event $event)
     {

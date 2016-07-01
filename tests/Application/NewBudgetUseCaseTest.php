@@ -1,13 +1,13 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Application;
 
 use UMA\Tests\TightFist\Stubs\ArrayBudgetRepository;
 use UMA\Tests\TightFist\Stubs\SpySubscriber;
 use UMA\TightFist\Application\NewBudgetUseCase;
-use UMA\TightFist\SharedKernel\EventDispatcher\LocalEventDispatcher;
+use UMA\DDD\EventDispatcher\LocalEventDispatcher;
 
 class NewBudgetUseCaseTest extends \PHPUnit_Framework_TestCase
 {

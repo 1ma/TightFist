@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Domain\Model\Budgeting;
 
 use UMA\TightFist\Domain\Model\Budgeting\Budget;
 use UMA\TightFist\Domain\Model\Budgeting\GreenMoneyPool;
-use UMA\TightFist\SharedKernel\EventDispatcher\LocalEventDispatcher;
+use UMA\DDD\EventDispatcher\LocalEventDispatcher;
 
 class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
 {

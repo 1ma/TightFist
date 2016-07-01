@@ -1,11 +1,11 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Stubs;
 
-use UMA\TightFist\SharedKernel\EventDispatcher\Event;
-use UMA\TightFist\SharedKernel\EventDispatcher\EventSubscriber;
+use UMA\DDD\EventDispatcher\Event;
+use UMA\DDD\EventDispatcher\EventSubscriber;
 
 class SpySubscriber implements EventSubscriber
 {

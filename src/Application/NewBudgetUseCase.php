@@ -1,11 +1,13 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace UMA\TightFist\Application;
 
 use UMA\TightFist\Domain\Model\Budgeting\Budget;
 use UMA\TightFist\Domain\Model\Budgeting\BudgetCreated;
 use UMA\TightFist\Domain\Model\Budgeting\BudgetRepository;
-use UMA\TightFist\SharedKernel\EventDispatcher\EventDispatcher;
+use UMA\DDD\EventDispatcher\EventDispatcher;
 
 class NewBudgetUseCase
 {

@@ -1,10 +1,8 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace UMA\TightFist\Domain\Model\Budgeting;
-
-use UMA\TightFist\Domain\Model\Budgeting\Budget;
 
 /**
  * The GreenMoneyPool is special MoneyPool that cannot

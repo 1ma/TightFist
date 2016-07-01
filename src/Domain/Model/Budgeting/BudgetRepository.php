@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace UMA\TightFist\Domain\Model\Budgeting;
 
-use UMA\TightFist\SharedKernel\Domain\UUID;
+use UMA\DDD\Foundation\UUID;
 
 interface BudgetRepository
 {

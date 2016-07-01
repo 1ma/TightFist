@@ -1,12 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Stubs;
 
 use UMA\TightFist\Domain\Model\Budgeting\Budget;
 use UMA\TightFist\Domain\Model\Budgeting\BudgetRepository;
-use UMA\TightFist\SharedKernel\Domain\UUID;
+use UMA\DDD\Foundation\UUID;
 
 class ArrayBudgetRepository implements BudgetRepository
 {
@@ -35,7 +35,7 @@ class ArrayBudgetRepository implements BudgetRepository
     public function get(UUID $id): Budget
     {
         if (isset($this->entities[(string) $id])) {
-            throw new \RuntimeException;
+            throw new \RuntimeException();
         }
 
         return $this->entities[(string) $id];

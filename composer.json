@@ -9,7 +9,8 @@
     },
     "autoload": {
         "psr-4": {
-            "UMA\\TightFist\\": "src"
+            "UMA\\TightFist\\": "src",
+            "UMA\\DDD\\": "ddd"
         }
     },
     "autoload-dev": {

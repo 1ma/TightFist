@@ -1,13 +1,15 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
-namespace UMA\TightFist\SharedKernel\EventDispatcher;
+namespace UMA\DDD\EventDispatcher;
 
 interface EventDispatcher
 {
     /**
      * @param EventSubscriber $subscriber
+     *
+     * @return EventDispatcher
      */
     public function addSubscriber(EventSubscriber $subscriber): EventDispatcher;
 

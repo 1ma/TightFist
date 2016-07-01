@@ -1,8 +1,8 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
-namespace UMA\TightFist\SharedKernel\Domain;
+namespace UMA\DDD\Foundation;
 
 use Ramsey\Uuid\Uuid as Generator;
 
@@ -13,9 +13,13 @@ class UUID implements ValueObject
      */
     private $uuid;
 
-    public function __construct()
+    public function __construct(string $uuid = null)
     {
-        $this->uuid = Generator::uuid4()->toString();
+        if (null !== $uuid && !Generator::isValid($uuid)) {
+            throw new \InvalidArgumentException('haha n00b');
+        }
+
+        $this->uuid = $uuid ?? Generator::uuid4()->toString();
     }
 
     public function __toString()

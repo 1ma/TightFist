@@ -1,11 +1,12 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace UMA\TightFist\Domain\Model\Budgeting;
 
-use UMA\TightFist\SharedKernel\Domain\UUID;
-use UMA\TightFist\SharedKernel\EventDispatcher\Event;
+use UMA\DDD\Foundation\UUID;
+use UMA\DDD\EventDispatcher\Event;
+use UMA\DDD\Foundation\ValueObject;
 
 class BudgetCreated implements Event
 {
@@ -15,14 +16,14 @@ class BudgetCreated implements Event
     private $budgetId;
 
     /**
-     * @var \DateTime
+     * @var \DateTimeImmutable
      */
     private $occurredAt;
 
     public function __construct(UUID $budgetId)
     {
         $this->budgetId = $budgetId;
-        $this->occurredAt = new \DateTime('now');
+        $this->occurredAt = new \DateTimeImmutable('now');
     }
 
     public function __toString()
@@ -30,8 +31,13 @@ class BudgetCreated implements Event
         return (string) $this->budgetId;
     }
 
-    public function occurredAt(): \DateTime
+    public function occurredAt(): \DateTimeImmutable
     {
         return $this->occurredAt;
+    }
+
+    public function equals(ValueObject $object): bool
+    {
+        return false;
     }
 }

@@ -1,13 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Domain\Model\Budgeting;
 
-use UMA\Tests\TightFist\Stubs\SpySubscriber;
 use UMA\TightFist\Domain\Model\Budgeting\Budget;
-use UMA\TightFist\Domain\Model\Budgeting\BudgetCreated;
-use UMA\TightFist\SharedKernel\EventDispatcher\LocalEventDispatcher;
 
 class BudgetTest extends \PHPUnit_Framework_TestCase
 {

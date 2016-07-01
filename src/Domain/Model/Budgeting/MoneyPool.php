@@ -2,7 +2,7 @@
 
 namespace UMA\TightFist\Domain\Model\Budgeting;
 
-use UMA\TightFist\SharedKernel\Domain\UUID;
+use UMA\DDD\Foundation\UUID;
 
 /**
  * The MoneyPool is an immutable value object.

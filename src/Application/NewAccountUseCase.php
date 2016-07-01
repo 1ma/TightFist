@@ -1,13 +1,15 @@
 <?php
 
+declare (strict_types = 1);
+
 namespace UMA\TightFist\Application;
 
 use UMA\TightFist\Domain\Model\Bookkeeping\Account;
 use UMA\TightFist\Domain\Model\Bookkeeping\AccountCreated;
 use UMA\TightFist\Domain\Model\Bookkeeping\AccountRepository;
 use UMA\TightFist\Domain\Model\Budgeting\BudgetRepository;
-use UMA\TightFist\SharedKernel\Domain\UUID;
-use UMA\TightFist\SharedKernel\EventDispatcher\EventDispatcher;
+use UMA\DDD\Foundation\UUID;
+use UMA\DDD\EventDispatcher\EventDispatcher;
 
 class NewAccountUseCase
 {
