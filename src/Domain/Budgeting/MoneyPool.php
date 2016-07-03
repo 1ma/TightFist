@@ -16,23 +16,16 @@ class MoneyPool implements Entity
     private $id;
 
     /**
-     * @var Budget
-     */
-    private $budget;
-
-    /**
      * @var int
      */
     private $balance;
 
     /**
-     * @param Budget $budget
-     * @param int    $startingBalance
+     * @param int $startingBalance
      */
-    public function __construct(Budget $budget, int $startingBalance = 0)
+    public function __construct(int $startingBalance = 0)
     {
         $this->id = new UUID();
-        $this->budget = $budget;
         $this->balance = $startingBalance;
     }
 

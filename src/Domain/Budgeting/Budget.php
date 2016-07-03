@@ -4,6 +4,7 @@ declare (strict_types = 1);
 
 namespace UMA\TightFist\Domain\Budgeting;
 
+use UMA\DDD\EventDispatcher\DomainEventDispatcher;
 use UMA\DDD\Foundation\AggregateRoot;
 use UMA\DDD\Foundation\UUID;
 
@@ -27,8 +28,12 @@ class Budget implements AggregateRoot
     public function __construct()
     {
         $this->id = new UUID();
-        $this->idlePool = new GreenMoneyPool($this);
+        $this->idlePool = new GreenMoneyPool();
         $this->items = [];
+
+        DomainEventDispatcher::getInstance()->dispatch(
+            new BudgetCreated($this->getId())
+        );
     }
 
     public function getId(): UUID
@@ -42,7 +47,7 @@ class Budget implements AggregateRoot
             throw new \RuntimeException('fuck you, you cannot override an existing item');
         }
 
-        $this->items[$item] = new MoneyPool($this);
+        $this->items[$item] = new MoneyPool();
 
         return $this;
     }

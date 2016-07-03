@@ -13,6 +13,8 @@ class GenericEventDispatcher implements EventDispatcher
 
     /**
      * {@inheritdoc}
+     *
+     * @return GenericEventDispatcher
      */
     public function addSubscriber(EventSubscriber $subscriber): EventDispatcher
     {

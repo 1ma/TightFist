@@ -4,10 +4,38 @@ declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Domain\Budgeting;
 
+use UMA\DDD\EventDispatcher\DomainEventDispatcher;
+use UMA\DDD\EventDispatcher\GenericEventDispatcher;
+use UMA\Tests\TightFist\Stubs\SpySubscriber;
 use UMA\TightFist\Domain\Budgeting\Budget;
+use UMA\TightFist\Domain\Budgeting\BudgetCreated;
 
 class BudgetTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var SpySubscriber
+     */
+    private $spy;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
+    {
+        DomainEventDispatcher::setInstance(
+            (new GenericEventDispatcher())
+                ->addSubscriber($this->spy = new SpySubscriber())
+        );
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function tearDown()
+    {
+        DomainEventDispatcher::clear();
+    }
+
     /**
      * @test
      */
@@ -29,5 +57,8 @@ class BudgetTest extends \PHPUnit_Framework_TestCase
 
         $budget->discardItem('food');
         $this->assertSame(8523, $budget->getIdleBalance());
+
+        $this->assertCount(1, $events = $this->spy->getObservedEvents());
+        $this->assertInstanceOf(BudgetCreated::class, $events[0]);
     }
 }

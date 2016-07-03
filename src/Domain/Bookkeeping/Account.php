@@ -4,6 +4,7 @@ declare (strict_types = 1);
 
 namespace UMA\TightFist\Domain\Bookkeeping;
 
+use UMA\DDD\EventDispatcher\DomainEventDispatcher;
 use UMA\DDD\Foundation\AggregateRoot;
 use UMA\TightFist\Domain\Budgeting\Budget;
 use UMA\DDD\Foundation\UUID;
@@ -25,11 +26,15 @@ class Account implements AggregateRoot
      */
     private $transactions;
 
-    public function __construct()
+    public function __construct(Budget $budget = null)
     {
         $this->id = new UUID();
-        $this->budget = null;
+        $this->budget = $budget;
         $this->transactions = [];
+
+        DomainEventDispatcher::getInstance()->dispatch(
+            new AccountCreated($this->getId())
+        );
     }
 
     public function getId(): UUID

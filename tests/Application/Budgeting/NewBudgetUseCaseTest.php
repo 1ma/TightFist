@@ -4,6 +4,7 @@ declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Application\Budgeting;
 
+use UMA\DDD\EventDispatcher\DomainEventDispatcher;
 use UMA\Tests\TightFist\Stubs\ArrayBudgetRepository;
 use UMA\Tests\TightFist\Stubs\SpySubscriber;
 use UMA\TightFist\Application\Budgeting\NewBudgetUseCase;
@@ -27,12 +28,25 @@ class NewBudgetUseCaseTest extends \PHPUnit_Framework_TestCase
      */
     private $useCase;
 
+    /**
+     * {@inheritdoc}
+     */
     protected function setUp()
     {
-        $eventDispatcher = (new GenericEventDispatcher())
-            ->addSubscriber($this->spy = new SpySubscriber());
+        DomainEventDispatcher::setInstance(
+            (new GenericEventDispatcher())
+                ->addSubscriber($this->spy = new SpySubscriber())
+        );
 
-        $this->useCase = new NewBudgetUseCase($eventDispatcher, $this->repository = new ArrayBudgetRepository());
+        $this->useCase = new NewBudgetUseCase($this->repository = new ArrayBudgetRepository());
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function tearDown()
+    {
+        DomainEventDispatcher::clear();
     }
 
     /**

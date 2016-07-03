@@ -10,13 +10,13 @@ namespace UMA\TightFist\Domain\Budgeting;
  */
 class GreenMoneyPool extends MoneyPool
 {
-    public function __construct(Budget $budget, int $startingBalance = 0)
+    public function __construct(int $startingBalance = 0)
     {
         if (0 > $startingBalance) {
             throw new \InvalidArgumentException('fuck you, you cannot create a GreenMoneyPool instance with a negative starting balance');
         }
 
-        parent::__construct($budget, $startingBalance);
+        parent::__construct($startingBalance);
     }
 
     /**

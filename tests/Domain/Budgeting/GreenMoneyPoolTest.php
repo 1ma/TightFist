@@ -4,7 +4,6 @@ declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Domain\Budgeting;
 
-use UMA\TightFist\Domain\Budgeting\Budget;
 use UMA\TightFist\Domain\Budgeting\GreenMoneyPool;
 
 class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
@@ -16,7 +15,7 @@ class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\RuntimeException::class);
 
-        $pool = new GreenMoneyPool(new Budget());
+        $pool = new GreenMoneyPool();
         $pool->debit(100);
     }
 
@@ -27,6 +26,6 @@ class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        new GreenMoneyPool(new Budget(), -100);
+        new GreenMoneyPool(-100);
     }
 }

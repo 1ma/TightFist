@@ -8,10 +8,8 @@ interface EventDispatcher
 {
     /**
      * @param EventSubscriber $subscriber
-     *
-     * @return EventDispatcher
      */
-    public function addSubscriber(EventSubscriber $subscriber): EventDispatcher;
+    public function addSubscriber(EventSubscriber $subscriber);
 
     /**
      * @param Event $event

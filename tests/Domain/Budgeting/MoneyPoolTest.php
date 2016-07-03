@@ -4,7 +4,6 @@ declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Domain\Budgeting;
 
-use UMA\TightFist\Domain\Budgeting\Budget;
 use UMA\TightFist\Domain\Budgeting\MoneyPool;
 
 class MoneyPoolTest extends \PHPUnit_Framework_TestCase
@@ -16,7 +15,7 @@ class MoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $pool = new MoneyPool(new Budget());
+        $pool = new MoneyPool();
         $pool->credit(-100);
     }
 
@@ -27,7 +26,7 @@ class MoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $pool = new MoneyPool(new Budget());
+        $pool = new MoneyPool();
         $pool->debit(-100);
     }
 }
