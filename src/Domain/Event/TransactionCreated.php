@@ -2,26 +2,26 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Bookkeeping;
+namespace UMA\TightFist\Domain\Event;
 
 use UMA\DDD\Foundation\UUID;
 use UMA\DDD\EventDispatcher\Event;
 
-class AccountCreated implements Event
+class TransactionCreated implements Event
 {
     /**
-     * @var UUID
+     * @var string
      */
-    private $accountId;
+    private $txId;
 
     /**
      * @var \DateTimeImmutable
      */
     private $occurredAt;
 
-    public function __construct(UUID $accountId)
+    public function __construct(UUID $txId)
     {
-        $this->accountId = $accountId;
+        $this->txId = $txId;
         $this->occurredAt = new \DateTimeImmutable('now');
     }
 

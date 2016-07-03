@@ -9,7 +9,7 @@ use UMA\Tests\TightFist\Stubs\ArrayBudgetRepository;
 use UMA\Tests\TightFist\Stubs\SpySubscriber;
 use UMA\TightFist\Application\Budgeting\NewBudgetUseCase;
 use UMA\DDD\EventDispatcher\GenericEventDispatcher;
-use UMA\TightFist\Domain\Budgeting\BudgetCreated;
+use UMA\TightFist\Domain\Event\BudgetCreated;
 
 class NewBudgetUseCaseTest extends \PHPUnit_Framework_TestCase
 {

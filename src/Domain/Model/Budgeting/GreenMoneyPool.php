@@ -2,7 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Budgeting;
+namespace UMA\TightFist\Domain\Model\Budgeting;
 
 /**
  * The GreenMoneyPool is special MoneyPool that cannot

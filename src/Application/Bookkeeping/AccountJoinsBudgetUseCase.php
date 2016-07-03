@@ -3,8 +3,8 @@
 namespace UMA\TightFist\Application\Bookkeeping;
 
 use UMA\DDD\Foundation\UUID;
-use UMA\TightFist\Domain\Bookkeeping\AccountRepository;
-use UMA\TightFist\Domain\Budgeting\BudgetRepository;
+use UMA\TightFist\Domain\Model\Bookkeeping\AccountRepository;
+use UMA\TightFist\Domain\Model\Budgeting\BudgetRepository;
 
 class AccountJoinsBudgetUseCase
 {

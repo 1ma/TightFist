@@ -7,8 +7,8 @@ namespace UMA\Tests\TightFist\Domain\Budgeting;
 use UMA\DDD\EventDispatcher\DomainEventDispatcher;
 use UMA\DDD\EventDispatcher\GenericEventDispatcher;
 use UMA\Tests\TightFist\Stubs\SpySubscriber;
-use UMA\TightFist\Domain\Budgeting\Budget;
-use UMA\TightFist\Domain\Budgeting\BudgetCreated;
+use UMA\TightFist\Domain\Model\Budgeting\Budget;
+use UMA\TightFist\Domain\Event\BudgetCreated;
 
 class BudgetTest extends \PHPUnit_Framework_TestCase
 {

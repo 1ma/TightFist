@@ -3,7 +3,7 @@
 namespace UMA\TightFist\Application\Bookkeeping;
 
 use UMA\DDD\Foundation\UUID;
-use UMA\TightFist\Domain\Bookkeeping\AccountRepository;
+use UMA\TightFist\Domain\Model\Bookkeeping\AccountRepository;
 
 class AccountLeavesBudgetUseCase
 {

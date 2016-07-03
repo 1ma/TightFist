@@ -2,32 +2,32 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Budgeting;
+namespace UMA\TightFist\Domain\Event;
 
 use UMA\DDD\Foundation\UUID;
 use UMA\DDD\EventDispatcher\Event;
 
-class BudgetCreated implements Event
+class AccountCreated implements Event
 {
     /**
      * @var UUID
      */
-    private $budgetId;
+    private $accountId;
 
     /**
      * @var \DateTimeImmutable
      */
     private $occurredAt;
 
-    public function __construct(UUID $budgetId)
+    public function __construct(UUID $accountId)
     {
-        $this->budgetId = $budgetId;
+        $this->accountId = $accountId;
         $this->occurredAt = new \DateTimeImmutable('now');
     }
 
     public function __toString()
     {
-        return (string) $this->budgetId;
+        return json_encode('');
     }
 
     public function occurredAt(): \DateTimeImmutable

@@ -4,7 +4,7 @@ declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Domain\Budgeting;
 
-use UMA\TightFist\Domain\Budgeting\GreenMoneyPool;
+use UMA\TightFist\Domain\Model\Budgeting\GreenMoneyPool;
 
 class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
 {

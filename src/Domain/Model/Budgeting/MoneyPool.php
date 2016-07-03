@@ -1,6 +1,6 @@
 <?php
 
-namespace UMA\TightFist\Domain\Budgeting;
+namespace UMA\TightFist\Domain\Model\Budgeting;
 
 use UMA\DDD\Foundation\Entity;
 use UMA\DDD\Foundation\UUID;

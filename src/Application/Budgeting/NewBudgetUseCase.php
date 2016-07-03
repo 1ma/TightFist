@@ -5,8 +5,8 @@ declare (strict_types = 1);
 namespace UMA\TightFist\Application\Budgeting;
 
 use UMA\DDD\Foundation\UUID;
-use UMA\TightFist\Domain\Budgeting\Budget;
-use UMA\TightFist\Domain\Budgeting\BudgetRepository;
+use UMA\TightFist\Domain\Model\Budgeting\Budget;
+use UMA\TightFist\Domain\Model\Budgeting\BudgetRepository;
 
 class NewBudgetUseCase
 {
