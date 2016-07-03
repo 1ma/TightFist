@@ -6,20 +6,9 @@ namespace UMA\Tests\TightFist\Domain\Budgeting;
 
 use UMA\TightFist\Domain\Budgeting\Budget;
 use UMA\TightFist\Domain\Budgeting\MoneyPool;
-use UMA\DDD\EventDispatcher\GenericEventDispatcher;
 
 class MoneyPoolTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @var Budget
-     */
-    private $budget;
-
-    protected function setUp()
-    {
-        $this->budget = new Budget(new GenericEventDispatcher());
-    }
-
     /**
      * @test
      */
@@ -27,7 +16,7 @@ class MoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $pool = new MoneyPool($this->budget);
+        $pool = new MoneyPool(new Budget());
         $pool->credit(-100);
     }
 
@@ -38,7 +27,7 @@ class MoneyPoolTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
 
-        $pool = new MoneyPool($this->budget);
+        $pool = new MoneyPool(new Budget());
         $pool->debit(-100);
     }
 }

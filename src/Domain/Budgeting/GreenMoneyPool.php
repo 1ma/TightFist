@@ -21,14 +21,6 @@ class GreenMoneyPool extends MoneyPool
 
     /**
      * {@inheritdoc}
-     */
-    public function credit(int $amount): MoneyPool
-    {
-        return new self($this->getBudget(), parent::credit($amount)->getBalance());
-    }
-
-    /**
-     * {@inheritdoc}
      *
      * @throws \RuntimeException
      */
@@ -38,7 +30,7 @@ class GreenMoneyPool extends MoneyPool
             throw new \RuntimeException('fuck you, you cannot debit more funds than what the balance holds');
         }
 
-        return new self($this->getBudget(), parent::debit($amount)->getBalance());
+        return parent::debit($amount);
     }
 
     /**

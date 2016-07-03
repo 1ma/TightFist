@@ -42,14 +42,6 @@ class MoneyPool implements Entity
     }
 
     /**
-     * @return Budget
-     */
-    public function getBudget(): Budget
-    {
-        return $this->budget;
-    }
-
-    /**
      * @return int
      */
     public function getBalance(): int
@@ -68,7 +60,9 @@ class MoneyPool implements Entity
     {
         $this->assertPositiveAmount($amount);
 
-        return new self($this->budget, $this->balance + $amount);
+        $this->balance += $amount;
+
+        return $this;
     }
 
     /**
@@ -82,7 +76,9 @@ class MoneyPool implements Entity
     {
         $this->assertPositiveAmount($amount);
 
-        return new self($this->budget, $this->balance - $amount);
+        $this->balance -= $amount;
+
+        return $this;
     }
 
     /**

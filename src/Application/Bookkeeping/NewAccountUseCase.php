@@ -40,7 +40,7 @@ class NewAccountUseCase
         $account = new Account();
 
         if (null !== $budgetId) {
-            if (null === $budget = $this->budgetRepository->find($budgetId))  {
+            if (null === $budget = $this->budgetRepository->find($budgetId)) {
                 return; //TODO
             }
 
