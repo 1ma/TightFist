@@ -4,8 +4,8 @@ declare (strict_types = 1);
 
 namespace UMA\Tests\TightFist\Stubs;
 
-use UMA\TightFist\Domain\Model\Budgeting\Budget;
-use UMA\TightFist\Domain\Model\Budgeting\BudgetRepository;
+use UMA\TightFist\Domain\Model\Budget;
+use UMA\TightFist\Domain\Model\BudgetRepository;
 use UMA\DDD\Foundation\UUID;
 
 class ArrayBudgetRepository implements BudgetRepository

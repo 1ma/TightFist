@@ -2,7 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model\Bookkeeping;
+namespace UMA\TightFist\Domain\Model;
 
 use UMA\DDD\Foundation\Entity;
 use UMA\DDD\Foundation\UUID;

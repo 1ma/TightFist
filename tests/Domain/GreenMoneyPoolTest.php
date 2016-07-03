@@ -2,9 +2,9 @@
 
 declare (strict_types = 1);
 
-namespace UMA\Tests\TightFist\Domain\Budgeting;
+namespace UMA\Tests\TightFist\Domain;
 
-use UMA\TightFist\Domain\Model\Budgeting\GreenMoneyPool;
+use UMA\TightFist\Domain\Model\GreenMoneyPool;
 
 class GreenMoneyPoolTest extends \PHPUnit_Framework_TestCase
 {

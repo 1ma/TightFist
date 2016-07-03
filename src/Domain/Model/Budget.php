@@ -2,7 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model\Budgeting;
+namespace UMA\TightFist\Domain\Model;
 
 use UMA\DDD\EventDispatcher\DomainEventDispatcher;
 use UMA\DDD\Foundation\AggregateRoot;

@@ -2,12 +2,12 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model\Bookkeeping;
+namespace UMA\TightFist\Domain\Model;
 
 use UMA\DDD\EventDispatcher\DomainEventDispatcher;
 use UMA\DDD\Foundation\AggregateRoot;
 use UMA\TightFist\Domain\Event\AccountCreated;
-use UMA\TightFist\Domain\Model\Budgeting\Budget;
+use UMA\TightFist\Domain\Model\Budget;
 use UMA\DDD\Foundation\UUID;
 
 class Account implements AggregateRoot
