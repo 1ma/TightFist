@@ -1,9 +1,14 @@
 <?php
 
-namespace UMA\TightFist\Domain\Model;
+declare (strict_types = 1);
+
+namespace UMA\TightFist\Budgeting;
 
 use UMA\DDD\Foundation\AggregateRoot;
 use UMA\DDD\Foundation\UUID;
+use UMA\TightFist\Money\Credit;
+use UMA\TightFist\Money\Debit;
+use UMA\TightFist\Money\Money;
 
 class Budget implements AggregateRoot
 {

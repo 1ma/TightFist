@@ -1,11 +1,13 @@
 <?php
 
-namespace UMA\Tests\TightFist\Domain\Model;
+declare (strict_types = 1);
 
-use UMA\TightFist\Domain\Model\Budget;
-use UMA\TightFist\Domain\Model\Credit;
-use UMA\TightFist\Domain\Model\Debit;
-use UMA\TightFist\Domain\Model\Money;
+namespace UMA\Tests\TightFist\Budgeting;
+
+use UMA\TightFist\Budgeting\Budget;
+use UMA\TightFist\Money\Credit;
+use UMA\TightFist\Money\Debit;
+use UMA\TightFist\Money\Money;
 
 class BudgetTest extends \PHPUnit_Framework_TestCase
 {

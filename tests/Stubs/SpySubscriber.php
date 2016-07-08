@@ -32,7 +32,10 @@ class SpySubscriber implements EventSubscriber
         $this->observedEvents[] = $event;
     }
 
-    public function getObservedEvents()
+    /**
+     * @return Event[]
+     */
+    public function getObservedEvents(): array
     {
         return $this->observedEvents;
     }

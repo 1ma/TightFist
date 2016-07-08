@@ -2,7 +2,7 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Domain\Model;
+namespace UMA\TightFist\Money;
 
 class Credit extends Money
 {

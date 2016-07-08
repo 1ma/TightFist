@@ -1,6 +1,8 @@
 <?php
 
-namespace UMA\TightFist\Domain\Model;
+declare (strict_types = 1);
+
+namespace UMA\TightFist\Money;
 
 use UMA\DDD\Foundation\ValueObject;
 
