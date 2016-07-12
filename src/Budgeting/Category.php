@@ -4,9 +4,10 @@ declare (strict_types = 1);
 
 namespace UMA\TightFist\Budgeting;
 
+use UMA\DDD\Foundation\Entity;
 use UMA\TightFist\Money\Money;
 
-class Category
+class Category implements Entity
 {
     private $budget;
 
@@ -26,6 +27,16 @@ class Category
         $this->balance = $money->lump($this->balance);
 
         return $this;
+    }
+
+    public function getBudget(): Budget
+    {
+        return $this->budget;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 
     public function getCurrentBalance(): Money
