@@ -4,6 +4,7 @@ declare (strict_types = 1);
 
 namespace UMA\TightFist\Budgeting;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use UMA\DDD\Foundation\AggregateRoot;
 use UMA\DDD\Foundation\UUID;
 use UMA\TightFist\Money\Credit;
@@ -23,7 +24,7 @@ class Budget implements AggregateRoot
     private $unassigned;
 
     /**
-     * @var Money[]
+     * @var Category[]
      */
     private $categories;
 
@@ -31,7 +32,7 @@ class Budget implements AggregateRoot
     {
         $this->id = new UUID();
         $this->unassigned = Money::make(0);
-        $this->categories = [];
+        $this->categories = new ArrayCollection();
     }
 
     /**
@@ -44,7 +45,7 @@ class Budget implements AggregateRoot
 
     public function createCategory(string $categoryName): Budget
     {
-        $this->categories[$categoryName] = Money::make(0);
+        $this->categories->set($categoryName, new Category($this, $categoryName));
 
         return $this;
     }
@@ -59,14 +60,14 @@ class Budget implements AggregateRoot
     public function assign(string $categoryName, Credit $credit): Budget
     {
         $this->unassigned = $credit->mirror()->lump($this->unassigned);
-        $this->categories[$categoryName] = $credit->lump($this->categories[$categoryName]);
+        $this->categories->get($categoryName)->lump($credit);
 
         return $this;
     }
 
     public function spend(string $categoryName, Debit $amount): Budget
     {
-        $this->categories[$categoryName] = $amount->lump($this->categories[$categoryName]);
+        $this->categories->get($categoryName)->lump($amount);
 
         return $this;
     }

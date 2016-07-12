@@ -1,7 +1,7 @@
 version: '2'
 services:
   php:
-    image: 1maa/php-dev:7.0
+    image: 1maa/php-cli:7.0-xdebug
     ports:
       - "4444:22"
     volumes:

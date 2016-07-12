@@ -32,8 +32,8 @@ class BudgetTest extends \PHPUnit_Framework_TestCase
             ->spend('food', new Debit(-10));
 
         $leftUnassigned = $amount->getValue($unassigned->getValue($budget));
-        $leftForFood = $amount->getValue($categories->getValue($budget)['food']);
-        $leftForRent = $amount->getValue($categories->getValue($budget)['rent']);
+        $leftForFood = $amount->getValue($categories->getValue($budget)->get('food')->getCurrentBalance());
+        $leftForRent = $amount->getValue($categories->getValue($budget)->get('rent')->getCurrentBalance());
 
         $this->assertSame(100, $leftUnassigned);
         $this->assertSame(310, $leftForFood);
