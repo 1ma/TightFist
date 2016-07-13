@@ -11,7 +11,7 @@ class TransactionBuilder
 {
     private $account;
 
-    private $category;
+    private $categoryName;
 
     private $amount;
 
@@ -28,9 +28,13 @@ class TransactionBuilder
     }
 
     /**
+     * @param string $categoryName
+     *
+     * @return TransactionBuilder
+     *
      * @throws \DomainException
      */
-    public function setCategory(Category $category): TransactionBuilder
+    public function setCategoryName(string $categoryName): TransactionBuilder
     {
         if (null === $this->account->getBudget()) {
             throw new \DomainException('Die Account is not part of a Budget, so its Transaction cannot have a spending Category');
@@ -40,21 +44,23 @@ class TransactionBuilder
             throw new \DomainException('In order to pass a Category to the Transaction, its amount must be a Debit');
         }
 
-        if ($this->account->getBudget() !== $category->getBudget()) {
+        if (!$this->account->getBudget()->hasCategory($categoryName)) {
             throw new \DomainException('Die Category must belong to the same budget as the Account');
         }
 
-        $this->category = $category;
+        $this->categoryName = $categoryName;
 
         return $this;
     }
 
     /**
+     * @return Transaction
+     *
      * @throws \DomainException
      */
     public function build(): Transaction
     {
-        if (null === $this->category) {
+        if (null === $this->categoryName) {
             if ($this->amount instanceof Debit && null !== $this->account->getBudget()) {
                 throw new \DomainException('Die new debit Transaction must have a spending Category because the Account is part of a Budget');
             }
@@ -62,6 +68,6 @@ class TransactionBuilder
             return new Transaction($this->account, $this->amount, $this->date, $this->memo);
         }
 
-        return new Transaction($this->account, $this->amount, $this->date, $this->memo, $this->category);
+        return new Transaction($this->account, $this->amount, $this->date, $this->memo, $this->categoryName);
     }
 }

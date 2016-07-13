@@ -50,6 +50,11 @@ class Budget implements AggregateRoot
         return $this;
     }
 
+    public function hasCategory(string $categoryName): bool
+    {
+        return $this->categories->containsKey($categoryName);
+    }
+
     public function earn(Credit $amount): Budget
     {
         $this->unassigned = $amount->lump($this->unassigned);

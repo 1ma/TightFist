@@ -6,7 +6,6 @@ namespace UMA\TightFist\Domain\Bookkeeping;
 
 use UMA\DDD\Foundation\Entity;
 use UMA\DDD\Foundation\UUID;
-use UMA\TightFist\Domain\Budgeting\Category;
 use UMA\TightFist\Domain\Money\Money;
 
 class Transaction implements Entity
@@ -23,7 +22,7 @@ class Transaction implements Entity
 
     private $memo;
 
-    public function __construct(Account $account, Money $amount, \DateTime $date, string $memo, Category $category = null)
+    public function __construct(Account $account, Money $amount, \DateTime $date, string $memo, string $category = null)
     {
         $this->id = new UUID();
         $this->account = $account;

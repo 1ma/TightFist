@@ -65,7 +65,7 @@ class Account implements AggregateRoot
             $txBuilder = new TransactionBuilder($this, $date, $amount, $memo);
 
             if (null !== $category) {
-                $txBuilder->setCategory($category);
+                $txBuilder->setCategoryName($category);
             }
 
             $transaction = $txBuilder->build();
@@ -87,7 +87,10 @@ class Account implements AggregateRoot
         $this->transactions->add($transaction);
     }
 
-    public function getBudget(): Budget
+    /**
+     * @return Budget|null
+     */
+    public function getBudget()
     {
         return $this->budget;
     }
