@@ -69,4 +69,62 @@ class TransactionBuilderTest extends \PHPUnit_Framework_TestCase
 
         $builder->build();
     }
+
+    /**
+     * @test
+     */
+    public function complexHappyPath()
+    {
+        $builder = new TransactionBuilder(
+            $this->budgetedAccount, new \DateTime('today'), Money::make(-100), 'Some (hopefully) relevant info'
+        );
+
+        $builder->setCategoryName('food');
+
+        $transaction = $builder->build();
+
+        $this->assertInstanceOf(Transaction::class, $transaction);
+    }
+
+    /**
+     * @test
+     */
+    public function complexSadPath1()
+    {
+        $this->expectException(\DomainException::class);
+
+        $builder = new TransactionBuilder(
+            $this->unbudgetedAccount, new \DateTime('today'), Money::make(-100), 'Some (hopefully) relevant info'
+        );
+
+        $builder->setCategoryName('food');
+    }
+
+    /**
+     * @test
+     */
+    public function complexSadPath2()
+    {
+        $this->expectException(\DomainException::class);
+
+        $builder = new TransactionBuilder(
+            $this->budgetedAccount, new \DateTime('today'), Money::make(100), 'Some (hopefully) relevant info'
+        );
+
+        $builder->setCategoryName('food');
+    }
+
+    /**
+     * @test
+     */
+    public function complexSadPath3()
+    {
+        $this->expectException(\DomainException::class);
+
+        $builder = new TransactionBuilder(
+            $this->budgetedAccount, new \DateTime('today'), Money::make(-100), 'Some (hopefully) relevant info'
+        );
+
+        $builder->setCategoryName('made up name');
+    }
 }

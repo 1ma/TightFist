@@ -2,7 +2,6 @@
 
 namespace UMA\TightFist\Domain\Bookkeeping;
 
-use UMA\TightFist\Domain\Budgeting\Category;
 use UMA\TightFist\Domain\Money\Credit;
 use UMA\TightFist\Domain\Money\Debit;
 use UMA\TightFist\Domain\Money\Money;
