@@ -2,10 +2,10 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Budgeting;
+namespace UMA\TightFist\Domain\Budgeting;
 
 use UMA\DDD\Foundation\Entity;
-use UMA\TightFist\Money\Money;
+use UMA\TightFist\Domain\Money\Money;
 
 class Category implements Entity
 {

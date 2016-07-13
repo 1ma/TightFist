@@ -2,11 +2,11 @@
 
 declare (strict_types = 1);
 
-namespace UMA\Tests\TightFist\Money;
+namespace UMA\Tests\TightFist\Domain\Money;
 
-use UMA\TightFist\Money\Credit;
-use UMA\TightFist\Money\Debit;
-use UMA\TightFist\Money\Money;
+use UMA\TightFist\Domain\Money\Credit;
+use UMA\TightFist\Domain\Money\Debit;
+use UMA\TightFist\Domain\Money\Money;
 
 class MoneyTest extends \PHPUnit_Framework_TestCase
 {
@@ -76,6 +76,26 @@ class MoneyTest extends \PHPUnit_Framework_TestCase
             'lump a credit with a larger debit' => [10, -50, -40, Debit::class],
             'lump a debit with a larger credit' => [-10, 50, 40, Credit::class],
             'lump two zero amounts (considered a Credit by convention)' => [0, 0, 0, Credit::class]
+        ];
+    }
+
+    /**
+     * @test
+     * @dataProvider incorrectUsesProvider
+     */
+    public function incorrectUses($class, $amount)
+    {
+        $this->expectException(\DomainException::class);
+
+        new $class($amount);
+    }
+
+    public function incorrectUsesProvider()
+    {
+        return [
+            [Credit::class, -100],
+            [Debit::class, 0],
+            [Debit::class, 100]
         ];
     }
 }

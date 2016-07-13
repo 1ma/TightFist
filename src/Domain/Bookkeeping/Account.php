@@ -2,16 +2,16 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Bookkeeping;
+namespace UMA\TightFist\Domain\Bookkeeping;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use UMA\DDD\Foundation\AggregateRoot;
 use UMA\DDD\Foundation\UUID;
-use UMA\TightFist\Budgeting\Budget;
-use UMA\TightFist\Budgeting\Category;
-use UMA\TightFist\Money\Credit;
-use UMA\TightFist\Money\Debit;
-use UMA\TightFist\Money\Money;
+use UMA\TightFist\Domain\Budgeting\Budget;
+use UMA\TightFist\Domain\Budgeting\Category;
+use UMA\TightFist\Domain\Money\Credit;
+use UMA\TightFist\Domain\Money\Debit;
+use UMA\TightFist\Domain\Money\Money;
 
 class Account implements AggregateRoot
 {

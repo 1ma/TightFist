@@ -2,12 +2,12 @@
 
 declare (strict_types = 1);
 
-namespace UMA\Tests\TightFist\Budgeting;
+namespace UMA\Tests\TightFist\Domain\Budgeting;
 
-use UMA\TightFist\Budgeting\Budget;
-use UMA\TightFist\Money\Credit;
-use UMA\TightFist\Money\Debit;
-use UMA\TightFist\Money\Money;
+use UMA\TightFist\Domain\Budgeting\Budget;
+use UMA\TightFist\Domain\Money\Credit;
+use UMA\TightFist\Domain\Money\Debit;
+use UMA\TightFist\Domain\Money\Money;
 
 class BudgetTest extends \PHPUnit_Framework_TestCase
 {

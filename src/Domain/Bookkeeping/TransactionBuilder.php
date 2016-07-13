@@ -1,11 +1,11 @@
 <?php
 
-namespace UMA\TightFist\Bookkeeping;
+namespace UMA\TightFist\Domain\Bookkeeping;
 
-use UMA\TightFist\Budgeting\Category;
-use UMA\TightFist\Money\Credit;
-use UMA\TightFist\Money\Debit;
-use UMA\TightFist\Money\Money;
+use UMA\TightFist\Domain\Budgeting\Category;
+use UMA\TightFist\Domain\Money\Credit;
+use UMA\TightFist\Domain\Money\Debit;
+use UMA\TightFist\Domain\Money\Money;
 
 class TransactionBuilder
 {

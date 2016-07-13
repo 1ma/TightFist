@@ -2,12 +2,12 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Bookkeeping;
+namespace UMA\TightFist\Domain\Bookkeeping;
 
 use UMA\DDD\Foundation\Entity;
 use UMA\DDD\Foundation\UUID;
-use UMA\TightFist\Budgeting\Category;
-use UMA\TightFist\Money\Money;
+use UMA\TightFist\Domain\Budgeting\Category;
+use UMA\TightFist\Domain\Money\Money;
 
 class Transaction implements Entity
 {

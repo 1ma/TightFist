@@ -2,14 +2,14 @@
 
 declare (strict_types = 1);
 
-namespace UMA\TightFist\Budgeting;
+namespace UMA\TightFist\Domain\Budgeting;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use UMA\DDD\Foundation\AggregateRoot;
 use UMA\DDD\Foundation\UUID;
-use UMA\TightFist\Money\Credit;
-use UMA\TightFist\Money\Debit;
-use UMA\TightFist\Money\Money;
+use UMA\TightFist\Domain\Money\Credit;
+use UMA\TightFist\Domain\Money\Debit;
+use UMA\TightFist\Domain\Money\Money;
 
 class Budget implements AggregateRoot
 {
